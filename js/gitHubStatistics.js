@@ -4,15 +4,14 @@ var GitHubStatistics;
 (function (GitHubStatistics) {
     class LDAPCPStats {
         constructor() {
-            this.url = "https://ldapcp-functions.azurewebsites.net/api/GetLatestLDAPCPRepoStats";
-            this.authZKey = "Qa9dKSDOyvgxsbsnJvw9pwTQ3PrGa6J/caQA8RF4tfiz9woaTmeaXQ==";
+            this.url = "https://github-stats.azurewebsites.net/api/GetLatestDocument";
         }
         getLatestStat() {
             //console.log("Sending query to " + this.url);            
             $.ajax({
                 method: "GET",
                 crossDomain: true,
-                data: { code: this.authZKey },
+                data: { project: "Yvand/LDAPCP" },
                 dataType: "jsonp",
                 jsonpCallback: "GitHubStatistics.LDAPCPStats.parseGitHubStatisticsResponse",
                 url: this.url,
@@ -24,9 +23,7 @@ var GitHubStatistics;
             });
         }
         static decodeJSONResponse(json) {
-            var obj = Object.assign({}, json, {
-            //created: new Date(json.DateStatCreatedUTC)
-            });
+            var obj = Object.assign({}, json, {});
             return obj;
         }
         static parseGitHubStatisticsResponse(data) {
