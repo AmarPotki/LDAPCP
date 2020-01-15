@@ -34,7 +34,7 @@ $trust.Update()
 You can extract ldapcp.dll from LDAPCP.wsp using [7-zip](https://www.7-zip.org/), and install it in the GAC using this PowerShell script:
 
 ```powershell
-[System.Reflection.Assembly]::Load("System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")
+[System.Reflection.Assembly]::Load("System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a") | Out-Null
 $publish = New-Object System.EnterpriseServices.Internal.Publish
 
 try
@@ -42,8 +42,10 @@ try
     # Method Publish.GacRemove() removes the assembly from the GAC if it exists (for update scenarios)
     $existingAssembly = [System.Reflection.Assembly]::Load("ldapcp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=80be731bc1a1a740").Location
     $publish.GacRemove($existingAssembly)
+	Write-Host "Assembly $existingAssembly successfully removed."
 } catch {}
 
 # Adds assembly to the GAC
 $publish.GacInstall("F:\Data\Dev\ldapcp.dll")
+Write-Host "Assembly was successfully added to the GAC."
 ```
