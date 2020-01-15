@@ -42,7 +42,7 @@ try
     # Method Publish.GacRemove() removes the assembly from the GAC if it exists (for update scenarios)
     $existingAssembly = [System.Reflection.Assembly]::Load("ldapcp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=80be731bc1a1a740").Location
     $publish.GacRemove($existingAssembly)
-	Write-Host "Assembly $existingAssembly successfully removed."
+    Write-Host "Assembly $existingAssembly successfully removed."
 } catch {}
 
 # Adds assembly to the GAC
