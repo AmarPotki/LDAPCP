@@ -4,14 +4,14 @@ var GitHubStatistics;
 (function (GitHubStatistics) {
     class LDAPCPStats {
         constructor() {
-            this.url = "https://github-stats.azurewebsites.net/api/GetLatestDocument";
+            this.url = "https://azfunc-repository-stats.azurewebsites.net/api/GetLatestDocument";
         }
         getLatestStat() {
             //console.log("Sending query to " + this.url);            
             $.ajax({
                 method: "GET",
                 crossDomain: true,
-                data: { project: "Yvand/LDAPCP" },
+                data: { project: "Yvand/LDAPCP", code: "tvIuDNuA9O0TXN9E9HcZeF8hho3yzcwOCt7Dd5ohYFbdOqUxftrb0g==" },
                 dataType: "jsonp",
                 jsonpCallback: "GitHubStatistics.LDAPCPStats.parseGitHubStatisticsResponse",
                 url: this.url,
